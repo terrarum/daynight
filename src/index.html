@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Day/Night</title>
+    <link rel="stylesheet" href="../lib/normalize.css"/>
+    <link rel="stylesheet" href="../daynight.css"/>
+</head>
+<body>
+
+    <div class="container">
+        <div class="title">
+            Day/Night
+        </div>
+    </div>
+    <div class="container">
+        <div class="left text">
+            <ul>
+                <li>Day and Night last a minute each.</li>
+                <li>Collector collects energy.</li>
+                <li>Energy collection rate is dependent on light levels.</li>
+            </ul>
+        </div>
+        <div class="right output">
+            <div class="statbar">
+                <div class="stat">
+                    Collectors: <span class="stat-collectors">0</span>
+                </div>
+                <div class="stat">
+                    Batteries: <span class="stat-batteries">0</span>
+                </div>
+                <div class="stat">
+                    Energy: <span class="stat-energy">0</span>
+                </div>
+                <div class="stat">
+                    Daytime: <span class="stat-daytime">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../lib/jquery-1.11.1.min.js"></script>
+    <script src="../lib/underscore-min.js"></script>
+    <script src="../lib/fpsmeter.js"></script>
+    <script src="../daynight.js"></script>
+</body>
+</html>
