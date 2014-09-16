@@ -17,6 +17,24 @@ module.exports = function(grunt) {
             }
         },
 
+        // Compile Coffeescript.
+        coffee: {
+            dev: {
+                options: {
+                    bare: false,
+                    sourceMap: true
+                },
+                expand: true,
+                cwd: 'src/',
+                src: ['**/*.coffee'],
+                dest: 'dist/',
+                ext: '.js'
+            },
+            prod: {
+
+            }
+        },
+
         // Compile SCSS.
         compass: {
             dev: {
@@ -81,6 +99,17 @@ module.exports = function(grunt) {
             }
         },
 
+        // Copy files to dist.
+        copy: {
+            dev: {
+                nonull: true,
+                flatten: true,
+                expand: true,
+                src: ['bower_components/requirejs/require.js', 'src/require-config.js'],
+                dest: 'dist/'
+            }
+        },
+
         // Watch for changes.
         watch: {
             files: 'src/sass/*.scss',
@@ -94,8 +123,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-browser-sync');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-coffee');
     grunt.loadNpmTasks('grunt-contrib-jade');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     /*
     * Development build process:
@@ -110,9 +141,11 @@ module.exports = function(grunt) {
     // Development task.
     grunt.registerTask('dev', [
         'clean:dist',
+        'copy:dev',
         'jade:compile',
         'compass:dev',
-        'concat:dev'
+        'concat:dev',
+        'coffee:dev'
     ]);
 
     grunt.registerTask('default', ["browserSync", "watch"]);
