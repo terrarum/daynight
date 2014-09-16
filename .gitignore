@@ -1,5 +1,6 @@
-dist/
+# Created by .gitignore support plugin (hsz.mobi)
 node_modules/
 bower_components/
 .idea/
-.vagrant/
+dist/
+.sass-cache/
