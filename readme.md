@@ -1,3 +1,7 @@
+# What is this?
+I want to make a sort-of game. There is a day/night cycle, and you must generate power using solar panels to power something.
+I had an idea for what that something should be, but I forgot what it was.
+
 # GOALS
 
 + Grunt

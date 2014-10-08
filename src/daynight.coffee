@@ -1,5 +1,8 @@
 require [
     "jquery"
     "game"
-], ($, game) ->
-    game.run()
+    "jade"
+], ($, Game) ->
+    game = new Game()
+    gameData = game.initGame()
+    game.start gameData

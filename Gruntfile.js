@@ -70,7 +70,7 @@ module.exports = function(grunt) {
 
         // Compile Jade templates.
         jade: {
-            compile: {
+            static: {
                 options: {
                     data: {
                         debug: false
@@ -79,6 +79,26 @@ module.exports = function(grunt) {
                 files: {
                     './dist/index.html': 'src/index.jade'
                 }
+            },
+            templates: {
+                options: {
+                    data: {
+                        debug: false
+                    },
+                    client: true,
+                    amd: true,
+                    namespace: false,
+                    //processName: function(filename) {
+                    //    return filename + "hello";
+                    //}
+                },
+                files: [{
+                    expand: true,
+                    src: '**/*.jade',
+                    dest: 'dist/views/partials',
+                    cwd: 'src/views/partials',
+                    ext: '.js'
+                }]
             }
         },
 
@@ -102,18 +122,34 @@ module.exports = function(grunt) {
         // Copy files to dist.
         copy: {
             dev: {
-                nonull: true,
-                flatten: true,
-                expand: true,
-                src: ['bower_components/requirejs/require.js', 'src/require-config.js'],
-                dest: 'dist/'
+                files: [
+                    {
+                        nonull: true,
+                        flatten: true,
+                        expand: true,
+                        src: ['bower_components/requirejs/require.js', 'src/require-config.js'],
+                        dest: 'dist/'
+                    }
+                ]
+
             }
         },
 
         // Watch for changes.
         watch: {
-            files: 'src/sass/*.scss',
-            tasks: ['compass:dev', 'concat:dev']
+            sass: {
+                files: 'src/sass/*.scss',
+                tasks: ['compass:dev', 'concat:dev']
+            },
+            js: {
+                files: ['src/**/*.coffee', 'src/**/*.jade'],
+                tasks: [
+                    'jade:static',
+                    'jade:templates',
+                    'concat:dev',
+                    'coffee:dev'
+                ]
+            }
         }
 
     });
@@ -142,7 +178,8 @@ module.exports = function(grunt) {
     grunt.registerTask('dev', [
         'clean:dist',
         'copy:dev',
-        'jade:compile',
+        'jade:static',
+        'jade:templates',
         'compass:dev',
         'concat:dev',
         'coffee:dev'

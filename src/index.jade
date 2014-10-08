@@ -4,9 +4,24 @@ html(lang="en")
         title Day/Night
         link(rel='stylesheet', href='daynight.css')
     body
+        div.fpsmeter-container
+            div#fpsmeter
+        div.block
         div.container
             div.row
-                p Hello!
+                div.stats.js-stats
+            div.row
+                div.daytime.js-daytime
+                    div.progress
+                        div.progress-bar.js-progress-bar
+            div.row
+                div.col-sm-9
+                    div.game-container
+                        h3 DayNight
+                div.col-sm-3
+                    div.game-sidebar
+                        h3 Sidebar
+
         //script(src="daynight.js")
         script(src="require.js")
         script(src="require-config.js")
