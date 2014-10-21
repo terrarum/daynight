@@ -13,12 +13,9 @@ define (require) ->
         @getInstance: ->
             console.log "Get Stats Instance"
             instance ?= new PrivateClass
-#            console.log "Stat:", StatTemplate
 
         class PrivateClass
             constructor: ->
-                console.log "Stats Internal Constructor"
-                console.log "Stat:", StatTemplate
 
             stats: {}
 
@@ -32,11 +29,10 @@ define (require) ->
             # Add the given information to the list of stats.
             log: (id, title, value) ->
                 if !@stats[id]?
-                    $('body').append(StatTemplate({name: 'James'}));
-                    $('.js-stats').append('<div class="' + id + '">' + title + ': ' + value + '</div>')
+                    $('.js-stats').append(StatTemplate({id: id, title: title, value: value}));
                 @stats[id] = @stat(id, title, value)
 
             render: ->
                 if Object.keys(@stats).length > 0
                     for key, stat of @stats
-                        $('.' + stat.id).html(stat.title + ': ' + stat.value)
+                        $('.' + stat.id).html(StatTemplate({id: stat.id, title: stat.title, value: stat.value}))
