@@ -19,3 +19,6 @@ I had an idea for what that something should be, but I forgot what it was.
 + browsersync:          npm install -g browser-sync
 + compass:              gem update --system && gem install compass
 + remaining packages:   npm install && bower install
+
+# Good Info
+http://codeincomplete.com/posts/2013/12/4/javascript_game_foundations_the_game_loop/
